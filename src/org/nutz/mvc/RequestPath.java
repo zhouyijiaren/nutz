@@ -8,6 +8,9 @@ public class RequestPath {
 
     private String path;
 
+    /**
+     * http://zhouxiang.club/add.do 中的"do"
+     */
     private String suffix;
 
     public String getUrl() {

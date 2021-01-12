@@ -42,6 +42,7 @@ public class NutServlet extends HttpServlet {
         sp = config.getSessionProvider();
     }
 
+    @Override
     public void destroy() {
         Mvcs.resetALL();
         Mvcs.set(selfName, null, null);
@@ -77,6 +78,7 @@ public class NutServlet extends HttpServlet {
         } finally {
         	Mvcs.resetALL();
             //仅当forward/incule时,才需要恢复之前设置
+            // TODO:zhouxiang 所以这里到底是干啥的
             if (mark != null) {
             	Mvcs.setServletContext(prCtx);
                 Mvcs.set(preName, req, resp);

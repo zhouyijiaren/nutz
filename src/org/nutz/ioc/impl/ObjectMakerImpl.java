@@ -32,6 +32,13 @@ import org.nutz.lang.reflect.FastMethod;
  */
 public class ObjectMakerImpl implements ObjectMaker {
 
+    /***
+     * TODO: very important
+     * @param ing
+     * @param iobj
+     * @return
+     */
+    @Override
     public ObjectProxy make(final IocMaking ing, IocObject iobj) {
 
         // 获取配置的对象事件集合
@@ -172,7 +179,8 @@ public class ObjectMakerImpl implements ObjectMaker {
         }
         return new IocEventTrigger<Object>() {
         	protected FastMethod fm;
-			public void trigger(Object obj) {
+			@Override
+            public void trigger(Object obj) {
 				try {
 					if (fm == null) {
 						Method method = Mirror.me(obj).findMethod(str);

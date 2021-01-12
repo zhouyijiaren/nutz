@@ -9,6 +9,7 @@ package org.nutz.ioc;
  * 
  * @see org.nutz.ioc.ValueProxyMaker
  * @see org.nutz.ioc.meta.IocValue
+ * @see org.nutz.ioc.loader.annotation.AnnotationIocLoader 和依赖注入有关系
  * 
  */
 public interface ValueProxy {

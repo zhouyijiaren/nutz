@@ -47,6 +47,7 @@ public abstract class AbstractNutConfig implements NutConfig {
         Json.clearEntityCache();
     }
 
+    @Override
     public Loading createLoading() {
         /*
          * 确保用户声明了 MainModule
@@ -65,6 +66,8 @@ public abstract class AbstractNutConfig implements NutConfig {
         try {
             if (log.isDebugEnabled())
                 log.debug("Loading by " + by.value());
+            //TODO 1.这里的泛型设计很有意思
+            //TODO 2.这个反射工具包有借鉴意义
             return Mirror.me(by.value()).born();
         }
         catch (Exception e) {
@@ -125,6 +128,7 @@ public abstract class AbstractNutConfig implements NutConfig {
             setAttribute(name, obj);
     }
 
+    @Override
     public Class<?> getMainModule() {
         if (mainModule != null)
             return mainModule;
@@ -143,6 +147,7 @@ public abstract class AbstractNutConfig implements NutConfig {
         }
     }
 
+    @Override
     public AtMap getAtMap() {
         return Mvcs.getAtMap();
     }

@@ -52,8 +52,16 @@ public class Mirror<T> {
 
     protected BornContext<T> emtryArgsBornContext;
 
+    /**
+     * 类型提炼器
+     */
     private static class DefaultTypeExtractor implements TypeExtractor {
 
+        /**
+         * 类型提炼器
+         * @param mirror
+         * @return
+         */
         @Override
         public Class<?>[] extract(Mirror<?> mirror) {
             Class<?> theType = mirror.getType();
@@ -139,7 +147,7 @@ public class Mirror<T> {
             return null;
         if (obj instanceof Class<?>)
             return (Mirror<T>) me((Class<?>) obj);
-        if (obj instanceof Enum)
+        if (obj instanceof Enum)//TODO: Enum为什么是这样呢？
             return me(((Enum) obj).getDeclaringClass());
         return (Mirror<T>) me(obj.getClass());
     }

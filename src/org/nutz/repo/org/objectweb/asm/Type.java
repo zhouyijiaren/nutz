@@ -746,7 +746,7 @@ public class Type {
             getDescriptor(buf, parameters[i]);
         }
         buf.append(')');
-        getDescriptor(buf, m.getReturnType());
+        getDescriptor(buf, m.getReturnType());//! 这样不会有问题吗？在最后一个参数正好是虚参的最后一个
         return buf.toString();
     }
 

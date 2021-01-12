@@ -88,7 +88,17 @@ public abstract class Iocs {
 
         return me;
     }
-    
+
+    /**
+     * 解析 value对应的值
+     * :realValue
+     * refer:realRefer
+     * otherType:realValue
+     * @param value
+     * @param dftRefer 是否冒号开头
+     * @return 返回IocValue
+     * @see org.nutz.ioc.meta.IocValue
+     */
     public static IocValue convert(String value, boolean dftRefer) {
         IocValue iocValue = new IocValue();
         if (dftRefer && value.startsWith(":")) {

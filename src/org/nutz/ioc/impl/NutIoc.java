@@ -142,8 +142,7 @@ public class NutIoc implements Ioc2 {
                     for (ValueProxyMaker maker : vpms) {
                         String[] ss = maker.supportedTypes();
                         if (ss != null)
-                            for (String s : ss)
-                                supportedTypes.add(s);
+                            supportedTypes.addAll(Arrays.asList(ss));
                     }
                 }
             }

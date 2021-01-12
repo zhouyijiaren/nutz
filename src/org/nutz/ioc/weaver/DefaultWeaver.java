@@ -68,6 +68,7 @@ public class DefaultWeaver implements ObjectWeaver {
         return obj;
     }
 
+    @Override
     public Object born(IocMaking ing) {
         // 准备构造函数参数
         Object[] args = new Object[this.args.length];
@@ -84,6 +85,7 @@ public class DefaultWeaver implements ObjectWeaver {
         return obj;
     }
 
+    @Override
     public Object onCreate(Object obj) {
         if (null != create && null != obj)
             create.trigger(obj);

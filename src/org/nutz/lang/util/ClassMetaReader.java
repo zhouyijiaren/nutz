@@ -37,7 +37,13 @@ public class ClassMetaReader {
             Streams.safeClose(in);
         }
     }
-    
+
+    /**
+     * 解析in这个class文件的字节码
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public static ClassMeta build(InputStream in) throws IOException {
         ClassMeta meta = new ClassMeta();
         DataInputStream dis = new DataInputStream(new BufferedInputStream(in));

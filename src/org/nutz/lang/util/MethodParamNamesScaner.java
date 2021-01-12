@@ -26,6 +26,7 @@ public class MethodParamNamesScaner {
             int size = method.getParameterTypes().length;
             if (size == 0)
                 return new ArrayList<String>(0);
+            //TODO: 这里为什么要解析字节码的方式呢？
             List<String> list = ClassMetaReader.getParamNames(method.getDeclaringClass()).get(ClassMetaReader.getKey(method));
             if (list == null)
                 return null;

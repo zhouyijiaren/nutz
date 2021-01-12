@@ -21,6 +21,7 @@ public class FilterNutConfig extends AbstractNutConfig {
         return config.getServletContext();
     }
 
+    @Override
     public String getInitParameter(String name) {
         return config.getInitParameter(name);
     }

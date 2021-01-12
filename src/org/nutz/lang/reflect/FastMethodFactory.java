@@ -87,6 +87,7 @@ public class FastMethodFactory implements Opcodes {
             return fm;
         }
         catch (Throwable e) {}
+        // ? 看不懂了。上面失败的原因都有神马。为什么下面能保证成功呢
         try {
             byte[] buf = _make(klass,
                                constructor.getModifiers(),

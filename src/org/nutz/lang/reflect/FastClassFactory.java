@@ -9,6 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.nutz.repo.org.objectweb.asm.Opcodes;
 import org.nutz.repo.org.objectweb.asm.Type;
 
+/**
+ * 快速类包装的缓存
+ */
 public final class FastClassFactory implements Opcodes {
 
     public static Map<String, FastClass> cache = new ConcurrentHashMap<String, FastClass>();
@@ -36,7 +39,7 @@ public final class FastClassFactory implements Opcodes {
         if (fastClass != null) {
             return fastClass;
         }
-        synchronized (lock) {
+        synchronized (lock) {// ?为什么这里要同步呢?
             fastClass = cache.get(cacheKey);
             if (fastClass != null) {
                 return fastClass;
@@ -73,8 +76,9 @@ public final class FastClassFactory implements Opcodes {
             constructors.put(key, fm);
         }
         for (Method method : klass.getMethods()) {
-            if (method.getName().contains("$"))
+            if (method.getName().contains("$")) {// 从$开始，这是什么方法？为什么不用记录了
                 continue;
+            }
             String key = method.getName() + "$" + Type.getMethodDescriptor(method);
             FastMethod fm = FastMethodFactory.make(method);
             methods.put(key, fm);

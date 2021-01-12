@@ -24,6 +24,7 @@ public class FastClassImpl implements FastClass {
         this.fields = fields;
     }
     
+    @Override
     public Object invoke(Object obj, Method method, Object... args) {
         try {
             FastMethod fm = fast(method);
@@ -38,6 +39,7 @@ public class FastClassImpl implements FastClass {
         }
     }
 
+    @Override
     public Object invoke(Object obj, String methodName, Class<?>[] types, Object... args) {
         try {
             return invoke(obj, obj.getClass().getDeclaredMethod(methodName, types), args);
@@ -76,18 +78,22 @@ public class FastClassImpl implements FastClass {
         }
     }
 
+    @Override
     public Object setField(Object obj, String fieldName, Object value) {
         return null;
     }
 
+    @Override
     public Object getField(Object obj, String fieldName) {
         return null;
     }
     
+    @Override
     public FastMethod fast(Method method) {
         return methods.get(method.getName() + "$" + Type.getMethodDescriptor(method));
     }
     
+    @Override
     public FastMethod fast(final Constructor<?> constructor) {
         FastMethod fm = constructors.get(Type.getConstructorDescriptor(constructor));
         if (fm == null)

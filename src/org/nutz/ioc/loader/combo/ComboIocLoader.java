@@ -146,6 +146,7 @@ public class ComboIocLoader extends AbstractLifeCycle implements IocLoader {
         return false;
     }
 
+    @Override
     public IocObject load(IocLoading loading, String name) throws ObjectLoadException {
         for (IocLoader loader : iocLoaders)
             if (loader.has(name)) {
@@ -156,7 +157,13 @@ public class ComboIocLoader extends AbstractLifeCycle implements IocLoader {
             }
         throw new ObjectLoadException("Object '" + name + "' without define!");
     }
-    
+
+    /**
+     * 通过klass获得bean
+     * @param loading
+     * @param klass
+     * @return
+     */
     public Set<String> getNamesByTypes(IocLoading loading, Class<?> klass) {
        Set<String> names = new HashSet<String>();
        for (IocLoader loader : iocLoaders) {

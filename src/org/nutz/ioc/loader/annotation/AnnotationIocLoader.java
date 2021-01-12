@@ -59,6 +59,10 @@ public class AnnotationIocLoader implements IocLoader {
         this.packages = packages;
     }
 
+    /**
+     * 根据classZ去把IocBean添加到map中{@code map}
+     * @param classZ
+     */
     public void addClass(Class<?> classZ) {
         if (classZ.isInterface()
             || classZ.isMemberClass()
@@ -160,7 +164,8 @@ public class AnnotationIocLoader implements IocLoader {
                 iocField.setOptional(inject.optional());
                 iocObject.addField(iocField);
                 fieldList.add(iocField.getName());
-            }
+            }//end for
+
             // 处理字段(以@Inject方式,位于set方法)
             Method[] methods;
             try {
@@ -195,6 +200,7 @@ public class AnnotationIocLoader implements IocLoader {
                     && method.getParameterTypes().length == 1) {
                     IocField iocField = new IocField();
                     iocField.setName(Strings.lowerFirst(methodName.substring(3)));
+                    //TODO: 这里为什么method和field要冲突呢？
                     if (fieldList.contains(iocField.getName())) {
                         throw duplicateField(beanName, classZ, iocField.getName());
                     }
@@ -212,6 +218,7 @@ public class AnnotationIocLoader implements IocLoader {
                     fieldList.add(iocField.getName());
                 }
             }
+
             // 处理字段(以@IocBean.field方式)
             String[] flds = iocBean.fields();
             if (flds != null && flds.length > 0) {
@@ -258,6 +265,7 @@ public class AnnotationIocLoader implements IocLoader {
                 if (ib == null) {
                     continue;
                 }
+                //TODO 处理method为什么会这么复杂呢？
                 handleIocBeanMethod(method, ib, beanName);
             }
         } else {
