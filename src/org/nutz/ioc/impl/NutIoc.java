@@ -160,6 +160,16 @@ public class NutIoc implements Ioc2 {
         return get(type, Strings.lowerFirst(type.getSimpleName()));
     }
 
+
+    /**
+     * TODO： 这里是IOC源代码解读的入口
+     * @param type    对象的类型
+     * @param name    对象的名称
+     * @param context 对象的上下文环境
+     * @param <T>
+     * @return
+     * @throws IocException
+     */
     public <T> T get(Class<T> type, String name, IocContext context) throws IocException {
         if (log.isDebugEnabled())
             log.debugf("Get '%s'<%s>", name, type == null ? "" : type);
@@ -178,7 +188,8 @@ public class NutIoc implements Ioc2 {
         // 从上下文缓存中获取对象代理
         ObjectProxy op = cntx.fetch(name);
 
-        // 如果未发现对象
+        // TODO 创建ioc的bean
+        // 如果未发现对象,开始去创建
         if (null == op) {
             // 线程同步
             synchronized (lock_get) {

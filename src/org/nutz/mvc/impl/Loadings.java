@@ -292,6 +292,11 @@ public abstract class Loadings {
         ai.setInjectName(beanName);
     }
 
+    /**
+     * ?比较重要的 filter解析过程
+     * @param ai
+     * @param filters
+     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void evalActionFilters(ActionInfo ai, Filters filters) {
         if (null != filters) {
@@ -321,11 +326,19 @@ public abstract class Loadings {
         }
     }
 
+    /**
+     * TODO loading ioc的bean数据
+     * @param config
+     * @param type 要实例的Class
+     * @param args 参数
+     * @param <T>
+     * @return
+     */
     public static <T> T evalObj(NutConfig config, Class<T> type, String[] args) {
         // 用上下文替换参数
         Context context = config.getLoadingContext();
         for (int i = 0; i < args.length; i++) {
-            args[i] = Segments.replace(args[i], context);
+            args[i] = Segments.replace(args[i], context);//TODO ?这里到底是个啥？
         }
         // 判断是否是 Ioc 注入
 

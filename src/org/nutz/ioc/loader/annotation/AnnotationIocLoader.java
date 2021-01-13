@@ -46,6 +46,9 @@ public class AnnotationIocLoader implements IocLoader {
         packages = new String[0];
     }
 
+    /**扫描IocBean
+     * @param packages
+     */
     public AnnotationIocLoader(String... packages) {
         for (String pkg : packages) {
         	log.infof(" > scan '%s'", pkg);

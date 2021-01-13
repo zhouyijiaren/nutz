@@ -149,6 +149,10 @@ public class CharSegment implements Segment, Cloneable {
 
     private NutMap keys;
 
+    /**
+     * ?这个到底是什么作用？
+     * @param reader
+     */
     public void parse(Reader reader) {
         nodes = new LinkedList<SegmentNode>();
         context = Lang.context();

@@ -50,6 +50,10 @@ public class NutLoading implements Loading {
 
     private static final Log log = Logs.get();
 
+    /**Nut框架启动的loading
+     * @param config
+     * @return
+     */
     public UrlMapping load(NutConfig config) {
         if (log.isInfoEnabled()) {
             log.infof("Nutz Version : %s ", Nutz.version());
@@ -176,7 +180,7 @@ public class NutLoading implements Loading {
         // fix issue #1337
         Determiner ann = mainModule.getAnnotation(Determiner.class);
         EntryDeterminer determiner = null == ann ? new NutEntryDeterminer() : Loadings.evalObj(config, ann.value(), ann.args());
-
+// TODO: zhouxiang  seeing here
         /*
          * 准备要加载的模块列表
          */
@@ -256,6 +260,7 @@ public class NutLoading implements Loading {
         UrlMappingBy umb = config.getMainModule().getAnnotation(UrlMappingBy.class);
         if (umb != null)
             return Loadings.evalObj(config, umb.value(), umb.args());
+        //默认的map信息
         return new UrlMappingImpl();
     }
 
